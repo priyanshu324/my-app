@@ -9,7 +9,7 @@ const subscriptions = JSON.parse(
 );
 
 webpush.setVapidDetails(
-  "mailto:you@example.com",
+  "mailto:saini.sarkar777@gmail.com",
   process.env.VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 );
