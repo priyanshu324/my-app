@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import webpush from "web-push";
 import dotenv from "dotenv";
-import path from "path";
 import { fileURLToPath } from "url";
 dotenv.config();
 
