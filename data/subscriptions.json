@@ -1,11 +1,10 @@
 [
-    {
-      "endpoint": "https://fcm.googleapis.com/fcm/send/some-id",
-      "expirationTime": null,
-      "keys": {
-        "p256dh": "some-base64-key",
-        "auth": "some-base64-auth"
-      }
+  {
+    "endpoint": "https://fcm.googleapis.com/fcm/send/abc123...",
+    "expirationTime": null,
+    "keys": {
+      "p256dh": "BOnQW...",
+      "auth": "UtzX..."
     }
-  ]
-  
+  }
+]

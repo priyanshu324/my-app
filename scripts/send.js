@@ -1,37 +1,30 @@
-const webpush = require("web-push");
-const fs = require("fs");
+import fs from "fs";
+import path from "path";
+import webpush from "web-push";
+import dotenv from "dotenv";
+dotenv.config();
 
-const subscriptions = JSON.parse(fs.readFileSync("data/subscriptions.json"));
-
-const VAPID_PUBLIC_KEY =
-  "BBxXmZVvJcvQbAFdX9rAiK62pui31gTfrL3VTDwzhmWJdOVGsBiwp9007JPjCSLglGX3tn7pSRREEDR4xsa6djc";
-const VAPID_PRIVATE_KEY = "dp0VkIs8SrUEsQ_1vFi95bp-nCnCRWzRX5i2_0sYSxM";
-
-webpush.setVapidDetails(
-  "mailto:saini.sarkar777@gmail.com",
-  VAPID_PUBLIC_KEY,
-  VAPID_PRIVATE_KEY
+const subscriptions = JSON.parse(
+  fs.readFileSync(path.resolve("data/subscriptions.json"))
 );
 
-console.log("📦 Total Subscriptions:", subscriptions.length);
+webpush.setVapidDetails(
+  "mailto:you@example.com",
+  process.env.VAPID_PUBLIC_KEY,
+  process.env.VAPID_PRIVATE_KEY
+);
 
-if (subscriptions.length === 0) {
-  console.log("⚠️ No subscriptions found. Add some to subscriptions.json");
-  process.exit();
-}
-
-const payload = JSON.stringify({
-  title: "Hello from PWA",
-  body: "Push notification without Firebase!",
-});
-
-subscriptions.forEach((sub, index) => {
-  webpush
-    .sendNotification(sub, payload)
-    .then(() => {
-      console.log(`✅ Notification sent to subscription #${index + 1}`);
-    })
-    .catch((err) => {
-      console.error(`❌ Failed to send notification #${index + 1}`, err);
-    });
+subscriptions.forEach(async (sub, index) => {
+  try {
+    await webpush.sendNotification(
+      sub,
+      JSON.stringify({
+        title: "🚀 Hello!",
+        body: "This is a test notification.",
+      })
+    );
+    console.log(`✅ Notification sent to #${index + 1}`);
+  } catch (err) {
+    console.error(`❌ Failed to send to #${index + 1}`, err);
+  }
 });
