@@ -1,8 +1,6 @@
-// This will be your mock list of subscriptions (in-memory)
-export const subscriptions = [];
+const subscriptions = [];
 
-// Optional: Save subscription from frontend
-export default function handler(req, res) {
+function handler(req, res) {
   if (req.method === "POST") {
     const subscription = req.body;
     subscriptions.push(subscription);
@@ -11,3 +9,8 @@ export default function handler(req, res) {
     res.status(405).end(); // Method Not Allowed
   }
 }
+
+module.exports = {
+  subscriptions,
+  handler
+};
