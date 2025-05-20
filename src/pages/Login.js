@@ -18,7 +18,7 @@ export default function Login() {
         <title>Login - Next.js PWA</title>
       </Head>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+        <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md text-black">
           <h2 className="text-2xl font-bold mb-6 text-center text-black">
             Login to your account
           </h2>
