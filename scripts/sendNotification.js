@@ -25,16 +25,19 @@ const sendNotification = async (token, title, body) => {
     throw new Error(`Failed to send notification: ${errText}`);
   }
 
-  console.log("Notification sent successfully");
+  console.log("✅ Notification sent successfully");
 };
 
+// TEST: Replace this token with one received from client
 (async () => {
   try {
-    // Replace this with token you stored from client
-    const testToken = "CLIENT_FCM_TOKEN_HERE";
-    await sendNotification(testToken, "Hello from Firebase", "This is a test notification.");
+    const testToken = "YOUR_CLIENT_DEVICE_FCM_TOKEN_HERE";
+    await sendNotification(
+      testToken,
+      "Hello from Firebase",
+      "This is a test notification."
+    );
   } catch (err) {
     console.error(err);
   }
 })();
-    
