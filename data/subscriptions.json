@@ -1,10 +1,10 @@
 [
   {
-    "endpoint": "https://some.push.service/some_id...",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/eP1cB1fExampleEndpoint-123456",
     "expirationTime": null,
     "keys": {
-      "p256dh": "",
-      "auth": ""
+      "p256dh": "BO8F0LKMmp0MJ5TF7d93BfK6a13GrHNH9Juz3tdVJXY0jBF4p3LRJloNxqS6fE8v8zZtW4tZjVJ0qHbJ9sXTO5g",
+      "auth": "zD9r5r3UOjLkDf3J4NK1Jg"
     }
   }
 ]
