@@ -1,60 +1,48 @@
-// pages/login.jsx
-import { useState } from "react";
-import Head from "next/head";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Logging in:", { email, password });
-    // Here you'd call your API or auth function
+
+    // Fake login simulation
+    if (email && password) {
+      localStorage.setItem('user', JSON.stringify({ email }));
+      router.push('/home'); // Redirect to home page
+    }
   };
 
   return (
     <>
       <Head>
-        <title>Login - Next.js PWA</title>
+        <title>Login - PWA</title>
       </Head>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md text-black">
-          <h2 className="text-2xl font-bold mb-6 text-center text-black">
-            Login to your account
-          </h2>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-white">
+        <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-sm transition-all duration-300 animate-fade-in">
+          <h2 className="text-2xl font-bold text-center mb-4">Welcome Back</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-black">
-                Email
-              </label>
-              <input
-                type="email"
-                className="w-full mt-1 p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-black">
-                Password
-              </label>
-              <input
-                type="password"
-                className="w-full mt-1 p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full p-3 border rounded-xl focus:ring focus:ring-blue-300"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-3 border rounded-xl focus:ring focus:ring-blue-300"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
             <button
               type="submit"
-              className="w-full bg-blue-600 text-black py-3 rounded-lg hover:bg-blue-700 transition"
-              onClick={() => {
-                alert("successfully login");
-              }}
+              className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 active:scale-95 transition-transform"
             >
               Login
             </button>
