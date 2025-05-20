@@ -1,5 +1,5 @@
 import webpush from "web-push";
-import { subscriptions } from "../pages/api/save-subscription.js";
+import { subscriptions } from "../src/pages/api/save-subscription";
 
 const VAPID_PUBLIC_KEY =
   "BBxXmZVvJcvQbAFdX9rAiK62pui31gTfrL3VTDwzhmWJdOVGsBiwp9007JPjCSLglGX3tn7pSRREEDR4xsa6djc";
