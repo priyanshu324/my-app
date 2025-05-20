@@ -11,12 +11,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Read and parse the JSON file
-const subscriptions = JSON.parse(
-  fs.readFileSync(
-    path.resolve(__dirname, "../data/subscriptions.json"),
-    "utf-8"
-  )
+const rawData = fs.readFileSync(
+  path.resolve(__dirname, "../data/subscriptions.json"),
+  "utf-8"
 );
+const data = JSON.parse(rawData);
+
+const subscriptions = Array.isArray(data) ? data : data.subscriptions; // if data.subscriptions exists
 
 webpush.setVapidDetails(
   "mailto:saini.sarkar777@gmail.com",
