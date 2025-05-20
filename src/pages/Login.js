@@ -24,12 +24,12 @@ export default function Login() {
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-900">
+              <label className="block text-sm font-medium text-black">
                 Email
               </label>
               <input
                 type="email"
-                className="w-full mt-1 p-3 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -37,12 +37,12 @@ export default function Login() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-900">
+              <label className="block text-sm font-medium text-black">
                 Password
               </label>
               <input
                 type="password"
-                className="w-full mt-1 p-3 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -51,7 +51,7 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
+              className="w-full bg-blue-600 text-black py-3 rounded-lg hover:bg-blue-700 transition"
               onClick={() => {
                 alert("successfully login");
               }}
