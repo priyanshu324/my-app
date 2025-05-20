@@ -1,6 +1,6 @@
 [
   {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/example-endpoint",
+   "endpoint": "https://fcm.googleapis.com/fcm/send/example-endpoint",
     "expirationTime": null,
     "keys": {
       "p256dh": "BOrqXP1vWsq7bAqMJzCy9EOw3NjzLjN2jG0w6W47YXgX4WVQ4QljUQbrHuzKWecJXzQDP0R-cWleR_HV9iPlk8V4",
