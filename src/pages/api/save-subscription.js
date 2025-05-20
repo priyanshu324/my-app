@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 
+
 export default function handler(req, res) {
   const subscriptionsPath = path.resolve("data/subscriptions.json");
   const body = req.body;
