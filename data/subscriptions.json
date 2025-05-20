@@ -1,3 +1,10 @@
 [
-  
+  {
+    "endpoint": "https://some.push.service/some_id...",
+    "expirationTime": null,
+    "keys": {
+      "p256dh": "some-long-string-with-encoded-key",
+      "auth": "another-string"
+    }
+  }
 ]
