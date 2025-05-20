@@ -3,6 +3,7 @@ import path from "path";
 import webpush from "web-push";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
+
 dotenv.config();
 
 // Required when using ES Modules to resolve __dirname
@@ -23,7 +24,9 @@ webpush.setVapidDetails(
   process.env.VAPID_PRIVATE_KEY
 );
 
-subscriptions.forEach(async (sub, index) => {
+// Use for...of loop for better async handling
+let count = 1;
+for (const sub of subscriptions) {
   try {
     await webpush.sendNotification(
       sub,
@@ -32,8 +35,9 @@ subscriptions.forEach(async (sub, index) => {
         body: "This is a test notification.",
       })
     );
-    console.log(`✅ Notification sent to #${index + 1}`);
+    console.log(`✅ Notification sent to #${count}`);
   } catch (err) {
-    console.error(`❌ Failed to send to #${index + 1}`, err);
+    console.error(`❌ Failed to send to #${count}`, err);
   }
-});
+  count++;
+}
