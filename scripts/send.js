@@ -10,35 +10,53 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Read and parse the JSON file
-const rawData = fs.readFileSync(
-  path.resolve(__dirname, "../data/subscriptions.json"),
-  "utf-8"
-);
-const data = JSON.parse(rawData);
+async function sendNotifications() {
+  // Read and parse the JSON file containing subscriptions
+  const rawData = fs.readFileSync(
+    path.resolve(__dirname, "../data/subscriptions.json"),
+    "utf-8"
+  );
 
-const subscriptions = Array.isArray(data) ? data : data.subscriptions; // if data.subscriptions exists
+  const data = JSON.parse(rawData);
 
-webpush.setVapidDetails(
-  "mailto:saini.sarkar777@gmail.com",
-  process.env.VAPID_PUBLIC_KEY,
-  process.env.VAPID_PRIVATE_KEY
-);
+  // If JSON is an array, use it; otherwise expect an object with a 'subscriptions' array
+  const subscriptions = Array.isArray(data) ? data : data.subscriptions;
 
-// Use for...of loop for better async handling
-let count = 1;
-for (const sub of subscriptions) {
-  try {
-    await webpush.sendNotification(
-      sub,
-      JSON.stringify({
-        title: "🚀 Hello!",
-        body: "This is a test notification.",
-      })
-    );
-    console.log(`✅ Notification sent to #${count}`);
-  } catch (err) {
-    console.error(`❌ Failed to send to #${count}`, err);
+  if (
+    !subscriptions ||
+    !Array.isArray(subscriptions) ||
+    subscriptions.length === 0
+  ) {
+    console.error("❌ No subscriptions found to send notifications.");
+    return;
   }
-  count++;
+
+  // Set VAPID keys for web-push
+  webpush.setVapidDetails(
+    "mailto:saini.sarkar777@gmail.com",
+    process.env.VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
+  );
+
+  let count = 1;
+
+  // Use for...of with await for proper async flow
+  for (const sub of subscriptions) {
+    try {
+      await webpush.sendNotification(
+        sub,
+        JSON.stringify({
+          title: "🚀 Hello!",
+          body: "This is a test notification.",
+        })
+      );
+      console.log(`✅ Notification sent to #${count}`);
+    } catch (err) {
+      console.error(`❌ Failed to send to #${count}`, err);
+    }
+    count++;
+  }
 }
+
+// Run the async function
+sendNotifications();
