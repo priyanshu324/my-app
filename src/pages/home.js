@@ -3,27 +3,25 @@ import { useEffect } from "react";
 export default function HomePage() {
   useEffect(() => {
     if ("serviceWorker" in navigator && "PushManager" in window) {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then(async (registration) => {
-          console.log("Service Worker registered:", registration);
+      navigator.serviceWorker.register("/sw.js").then(async (registration) => {
+        console.log("Service Worker registered:", registration);
 
-          const subscription = await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(
-              "YOUR_PUBLIC_VAPID_KEY"
-            ),
-          });
-
-          console.log("Push Subscription:", subscription);
-
-          // 👉 Send subscription to your backend to store
-          await fetch("/api/save-subscription", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(subscription),
-          });
+        const subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            "BBmU21TTPzmPm6JpUnkqQC5Qy2xFBoabjrQxQdsr7hjZbliR4GVMnhP88rFCX1c4Zklo9TxJ41t2iYWeIUPZZWU"
+          ),
         });
+
+        console.log("Push Subscription:", subscription);
+
+        // 👉 Send subscription to your backend to store
+        await fetch("/api/save-subscription", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(subscription),
+        });
+      });
     }
   }, []);
 
